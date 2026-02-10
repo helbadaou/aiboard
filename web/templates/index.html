@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Drawing Board</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>🎨 AI Drawing Board</h1>
+            <div id="status">Loading...</div>
+        </header>
+
+        <div id="toolbar">
+            <div id="colors">
+                <button class="color-btn active" data-color="#00ff00" style="background-color: #00ff00;"></button>
+                <button class="color-btn" data-color="#ff0000" style="background-color: #ff0000;"></button>
+                <button class="color-btn" data-color="#0000ff" style="background-color: #0000ff;"></button>
+                <button class="color-btn" data-color="#ffff00" style="background-color: #ffff00;"></button>
+                <button class="color-btn" data-color="#ffffff" style="background-color: #ffffff;"></button>
+                <button class="color-btn" data-color="#ff00ff" style="background-color: #ff00ff;"></button>
+                <button class="color-btn" data-color="#ffa500" style="background-color: #ffa500;"></button>
+            </div>
+            <div id="controls">
+                <label>
+                    Brush Size: <span id="brush-size-value">5</span>
+                    <input type="range" id="brush-size" min="1" max="50" value="5">
+                </label>
+                <button id="clear-btn">🗑️ Clear</button>
+                <button id="save-btn">💾 Save</button>
+            </div>
+            <div id="text-controls">
+                <input type="text" id="text-input" placeholder="Enter text..." value="Hello!">
+                <label>
+                    Font Size: <span id="font-size-value">32</span>
+                    <input type="range" id="font-size" min="16" max="100" value="32">
+                </label>
+                <button id="add-text-btn">➕ Add Text</button>
+            </div>
+        </div>
+
+        <div id="canvas-container">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="drawing-canvas"></canvas>
+            <canvas id="overlay-canvas"></canvas>
+        </div>
+
+        <div id="instructions">
+            <p><strong>Controls:</strong></p>
+            <ul>
+                <li>☝️ <strong>Index finger only</strong> - Draw</li>
+                <li>✌️ <strong>Peace sign (2 fingers)</strong> - Move without drawing</li>
+                <li>🤏 <strong>Pinch (thumb + index)</strong> - Grab & move text</li>
+                <li>🖐️ <strong>Open palm</strong> - Pause</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MediaPipe Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/drawing_utils.min.js"></script>
+    
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
