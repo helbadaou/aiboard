@@ -26,7 +26,8 @@ def serve_static(filename):
 
 if __name__ == '__main__':
     print("\n=== AI Drawing Board - Web Version ===")
-    print("Open http://localhost:5000 in your browser")
+    print("Open https://localhost:5000 in your browser")
+    print("(Accept the security warning for the self-signed certificate)")
     print("Make sure to allow camera access when prompted")
     print("======================================\n")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True, ssl_context='adhoc')

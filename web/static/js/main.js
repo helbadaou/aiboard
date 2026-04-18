@@ -100,6 +100,11 @@ class AIDrawingBoard {
     
     async setupCamera() {
         try {
+            // Check if getUserMedia is available (requires HTTPS or localhost)
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                throw new Error('Camera API not available. Please use HTTPS or access via localhost.');
+            }
+            
             const stream = await navigator.mediaDevices.getUserMedia({
                 video: {
                     width: { ideal: 1280 },
@@ -125,7 +130,10 @@ class AIDrawingBoard {
             
         } catch (error) {
             console.error('Camera error:', error);
-            this.updateStatus('Camera access denied', 'error');
+            const message = error.message.includes('HTTPS') || error.message.includes('localhost') 
+                ? error.message 
+                : 'Camera access denied. Make sure to allow camera permissions.';
+            this.updateStatus(message, 'error');
         }
     }
     
